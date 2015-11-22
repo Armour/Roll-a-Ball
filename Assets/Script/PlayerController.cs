@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour {
 	public float speed;
 	public Text countText;
 	public Text winText;
+	public Rigidbody bullet;
+	public Transform playerPos;
 
 	private int maxScore = 14;
 	private Rigidbody rb;
@@ -26,6 +28,14 @@ public class PlayerController : MonoBehaviour {
 		Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
 		rb.AddForce(movement * speed);
+	}
+
+	void Update() {
+		if (Input.GetButtonDown("Fire1")) {
+			Rigidbody bulletInstance;
+			bulletInstance = Instantiate(bullet, playerPos.position, playerPos.rotation) as Rigidbody;
+			bulletInstance.AddForce(playerPos.forward * 1000);
+		}
 	}
 
 	void OnTriggerEnter(Collider other) {
