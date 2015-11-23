@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour {
 			Rigidbody bulletInstance;
 			bulletInstance = Instantiate(bullet, playerPos.position, playerPos.rotation) as Rigidbody;
 			bulletInstance.AddForce(playerPos.forward * 1000);
+			Debug.Log(BulletController.bulletCount);
 		}
 	}
 
