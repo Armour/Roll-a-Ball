@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
-	public float speed;
+	[Range(0, 100)] public float speed;
 	public Text countText;
 	public Text winText;
 	public Rigidbody bullet;
@@ -21,6 +21,12 @@ public class PlayerController : MonoBehaviour {
 		winText.text = "";
 	}
 
+	public float TestSpeed {
+		get {
+			return speed;
+		}
+	}
+
 	void FixedUpdate() {
 		float moveHorizontal = Input.GetAxis("Horizontal");
 		float moveVertical = Input.GetAxis("Vertical");
@@ -32,10 +38,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Update() {
 		if (Input.GetButtonDown("Fire1")) {
-			Rigidbody bulletInstance;
-			bulletInstance = Instantiate(bullet, playerPos.position, playerPos.rotation) as Rigidbody;
-			bulletInstance.AddForce(playerPos.forward * 1000);
-			Debug.Log(BulletController.bulletCount);
+			Shoot();
 		}
 	}
 
@@ -52,5 +55,12 @@ public class PlayerController : MonoBehaviour {
 		if (count >= maxScore) {
 			winText.text = "You win !!!";
 		}
+	}
+
+	private void Shoot() {
+		Rigidbody bulletInstance;
+		bulletInstance = Instantiate(bullet, playerPos.position, playerPos.rotation) as Rigidbody;
+		bulletInstance.AddForce(playerPos.forward * 1000);
+		Debug.Log(BulletController.bulletCount);
 	}
 }
