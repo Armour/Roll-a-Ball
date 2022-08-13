@@ -6,9 +6,9 @@ using UnityEditor;
 public class PlayerEditor : Editor {
 
 	public override void OnInspectorGUI() {
-		DrawDefaultInspector();
+		base.OnInspectorGUI();
 
-		PlayerController myTarget = (PlayerController)target; 
+		PlayerController myTarget = (PlayerController)target;
 		EditorGUILayout.LabelField("Test Custom Editor", myTarget.speed.ToString());
 		if (GUILayout.Button("Custom Button!")) {
 			Debug.Log("This is the test custom button");

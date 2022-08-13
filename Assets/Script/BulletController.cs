@@ -9,7 +9,7 @@ public class BulletController : MonoBehaviour {
 	void Start () {
 		bulletCount++;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		Destroy(gameObject, 2.0f);
